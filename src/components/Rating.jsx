@@ -22,6 +22,11 @@ const Rating = ({
     }
   };
 
+  const closeModal = () => {
+    setSubmitted(false);
+    setRating(0);
+  };
+
   return (
     <div className="rating-container">
       <h2>{heading}</h2>
@@ -48,15 +53,7 @@ const Rating = ({
         Submit
       </button>
 
-      <Modal isOpen={submitted} onClose={() => setSubmitted(false)}>
-        <h2>Thank You!</h2>
-        <p>
-          You rated us {rating} star{rating > 1 ? "s" : ""}
-        </p>
-        <button onClick={() => {setSubmitted(false); setRating(0)}}>
-          Close
-        </button>
-      </Modal>
+      <Modal isOpen={submitted} onClose={closeModal} rating={rating} />
     </div>
   );
 };
